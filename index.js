@@ -9,11 +9,10 @@ app.use(express.json());
 
 // ✅ 這裡要用 mongoose.connect("字串")
 mongoose
-  .connect(
-    "mongodb+srv://heinhtetyang_db_user:hhayang2468@cluster0.jsplzji.mongodb.net/task-manager?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
+
 
 app.get("/tasks", async (req, res) => {
   const tasks = await Task.find();
